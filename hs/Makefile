@@ -100,3 +100,12 @@ gen-reach: stack
 	stack build --fast :gen-reach
 	stack exec gen-reach > sbin/reach
 	chmod +x sbin/reach
+
+.PHONY: watch
+watch: stack
+	@ghcid --target=reach:exe:reach-cli -T Main.main
+
+# TODO
+#.PHONY: reach-cli
+#reach-cli: stack
+#	docker build -f Dockerfile.reach-cli --tag=reachsh/reach-cli:latest .
